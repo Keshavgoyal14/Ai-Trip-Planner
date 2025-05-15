@@ -52,11 +52,10 @@ const Header = () => {
   };
 
   const handleLogout = () => {
-    window.location.reload()
     googleLogout()
     localStorage.removeItem('user')
     navigate('/')
-
+    window.location.reload()
   }
   return (
     <div className='flex justify-between items-center p-4  mt-1 shadow-sm'>
