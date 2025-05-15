@@ -46,7 +46,7 @@ const GetPhoto = async () => {
     console.warn("No valid photo found.")
   }
 }
- const shareUrl = window.location.href; // Current page URL
+ const shareUrl = `${window.location.origin}${window.location.pathname}`; // Current page URL
   const title = `Check out this trip to ${trip?.userSelection?.location}!`;
 
   return (
