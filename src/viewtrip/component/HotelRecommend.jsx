@@ -37,19 +37,19 @@ function HotelRecommend({trip}) {
     }
   };
   return (
-    <div className='m-5 font-bold '>
-        <h2 className='ml-2 text-xl'>Hotel Recommendation</h2>
+    <div className='m-5 font-bold dark:border-gray-200   '>
+        <h2 className='ml-2 text-xl dark:text-gray-300'>Hotel Recommendation</h2>
         <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mt-5'>
             {trip?.Aitrips?.hotels?.map((item,index)=>{
                
                 return( <Link to={'https://www.google.com/maps/search/?api=1&query='+item?.hotelName+","+item?.hotelAddress} target="_blank">
-                    <div key={index} className='flex flex-col gap-2 hover:shadow-2xl hover:border-blue-100 hover:border-2 rounded-xl '>
+                    <div key={index} className='flex flex-col gap-2 hover:shadow-2xl hover:border-blue-100 hover:border-2 rounded-xl  '>
                         <img src={photoURL[index]} alt="Not found" className='w-[400px] height-[400px]'/>
-                        <div className='flex flex-col  justify-between text-center text-xs'>
-                            <h2 className='font-bold text-[16px]'>🛏️{item?.hotelName}</h2>
-                            <h2 className='text-xs text-gray-500'>📍{item?.hotelAddress}</h2>
-                            <h2 className='font-medium'>💸{item?.price}</h2>
-                            <h2>⭐{item?.rating}</h2>
+                        <div className='flex flex-col gap-2 justify-between text-center text-xs dark:bg-gray-900'>
+                            <h2 className='font-bold text-[16px] dark:text-gray-300'>🛏️{item?.hotelName}</h2>
+                            <h2 className='text-xs text-gray-500 dark:text-gray-400'>📍{item?.hotelAddress}</h2>
+                            <h2 className='font-medium dark:text-gray-300'>💸{item?.price}</h2>
+                            <h2 className='font-bold dark:text-gray-300 '>⭐{item?.rating}</h2>
 
                     </div></div></Link>
                 )

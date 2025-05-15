@@ -51,21 +51,21 @@ function PlacesToVisit({trip}) {
     return dayA - dayB;
   }).map(([day, places], index) => {
       return (
-        <div key={index} className="flex flex-col gap-2 p-4 hover:shadow-2xl hover:border-blue-100 hover:border-2 rounded-xl">
+        <div key={index} className="flex flex-col gap-2 p-4 hover:shadow-2xl hover:border-blue-100 hover:border-2 rounded-xl dark:text-gray-300">
           <h2 className="text-xl font-semibold capitalize">{day}</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {places?.map((place, placeIndex) => (
             <Link to={'https://www.google.com/maps/search/?api=1&query='+place?.placeName+","+place?.latitute+","+place?.longitude} target="_blank">
             <div
               key={placeIndex}
-              className="flex gap-4 items-center p-4 bg-white rounded-xl hover:shadow-lg border"
+              className="flex gap-4 items-center p-4 bg-white rounded-xl hover:shadow-lg border dark:bg-gray-900 dark:hover:border-gray-300"
             >
             <img src={photoURLs[`${day}-${placeIndex}`]} alt="Image not found" className="w-24 h-24 object-cover rounded-lg" />
-              <div className="flex flex-col gap-1">
+              <div className="flex flex-col gap-1 ">
                 <h2 className="text-lg font-medium">{place?.placeName}</h2>
-                <h2 className="text-sm text-gray-600 font-medium">{place?.placeDetails}</h2>
-                <h2 className="text-sm text-gray-500">Travel Time:⏱️ {place?.timeTravel}</h2>
-                <h2 className="text-sm text-gray-500">Rating: {place?.rating}⭐</h2>
+                <h2 className="text-sm text-gray-600 font-medium dark:text-gray-500">{place?.placeDetails}</h2>
+                <h2 className="text-sm text-gray-500 dark:text-gray-400">Travel Time:⏱️ {place?.timeTravel}</h2>
+                <h2 className="text-sm text-gray-500 dark:text-gray-400">Rating: {place?.rating}⭐</h2>
               </div>
             </div></Link>
           ))}</div>
