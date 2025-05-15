@@ -1,10 +1,21 @@
 import { useEffect, useState } from "react";
 import { GetPlacesDetails } from "../../service/GlobalApi";
 import { IoIosSend } from "react-icons/io";
-
+import { FaFacebook } from "react-icons/fa6";
+import { FaSquareXTwitter } from "react-icons/fa6";import { FaWhatsapp } from "react-icons/fa";
+import { FaInstagram } from "react-icons/fa6"
+import { FaLinkedinIn } from "react-icons/fa";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog"
+import {FacebookShareButton, TwitterShareButton, WhatsappShareButton,LinkedinShareButton,InstapaperShareButton} from "react-share"
 const InfoSection = ({trip}) => {
   const [photoURL, setPhotoUrl] = useState('');
-
+  const [openDialog, setOpenDialog] = useState(false);
 // Log when photoURL changes
 useEffect(() => {
   if (photoURL) {
@@ -35,6 +46,8 @@ const GetPhoto = async () => {
     console.warn("No valid photo found.")
   }
 }
+ const shareUrl = window.location.href; // Current page URL
+  const title = `Check out this trip to ${trip?.userSelection?.location}!`;
 
   return (
     <div className='flex flex-col gap-4 m-5'>
@@ -46,9 +59,33 @@ const GetPhoto = async () => {
           <h2 className='bg-gray-300  rounded-xl m-2 p-2 font-medium text-xs md:text-[14px] '>📅{trip?.userSelection?.NoOfDays} Days</h2>
           <h2 className='bg-gray-300  rounded-xl m-2 p-2 font-medium text-xs md:text-[14px]'>💰{trip?.userSelection?.budget} Budget</h2>
           <h2 className='bg-gray-300  rounded-xl m-2 p-2 font-medium text-xs md:text-[14px]'>🧑🏻‍🤝‍🧑🏻No.of travelers: {trip?.userSelection?.persons}</h2>
-       </div><div className='mr-5'> <button><IoIosSend style={{color:"white",background:"black"}} size={35} className='hover:cursor-pointer p-2 rounded-[3px]' /></button></div>
+       </div><div className='mr-5'> <button onClick={()=>setOpenDialog(true)}><IoIosSend style={{color:"white",background:"black"}} size={45} className='hover:cursor-pointer p-2 rounded-[3px]' /></button></div>
         </div>
       </div>
+     <Dialog open={openDialog} onOpenChange={setOpenDialog}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle className="font-bold text-2xl">Share</DialogTitle>
+          </DialogHeader>
+          <div className="grid grid-cols-5 gap-10 p-2">
+            <FacebookShareButton url={shareUrl} quote={title}>
+              <button className="bg-blue-600 text-white p-2 rounded-lg w-full "><FaFacebook size={40}/></button>
+            </FacebookShareButton>
+            <TwitterShareButton url={shareUrl} title={title}>
+              <button className="bg-black text-white p-2 rounded-lg w-full"><FaSquareXTwitter size={40} /></button>
+            </TwitterShareButton>
+            <WhatsappShareButton url={shareUrl} title={title}>
+              <button className="bg-green-500 text-white p-2 rounded-lg w-full"><FaWhatsapp size={40}/></button>
+            </WhatsappShareButton>
+            <InstapaperShareButton url={shareUrl} title={title}>
+              <button className="bg-pink-700 text-white p-2 rounded-lg w-full"><FaInstagram size={40}/></button>
+            </InstapaperShareButton>
+            <LinkedinShareButton url={shareUrl} title={title}>
+              <button className="bg-blue-700 text-white p-2 rounded-lg w-full"><FaLinkedinIn size={40}/></button>
+            </LinkedinShareButton>
+          </div>
+        </DialogContent>
+      </Dialog>
     </div>
     
   )
