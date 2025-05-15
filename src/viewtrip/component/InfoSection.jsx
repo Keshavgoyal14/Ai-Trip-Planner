@@ -46,20 +46,18 @@ const GetPhoto = async () => {
     console.warn("No valid photo found.")
   }
 }
- const shareUrl = `${window.location.origin}${window.location.pathname}`; // Current page URL
-  const title = `Check out this trip to ${trip?.userSelection?.location}!`;
 
   return (
     <div className='flex flex-col gap-4 m-5'>
-      <img src={photoURL} alt="No image found" className="h-[340px] w-full object-cover rounded-2xl " />
+      <img src={photoURL} alt="No image found" className="h-[340px] w-full object-cover rounded-2xl dark:border-gray-700 dark:border-2" />
       <div>
-        <h2 className='font-bold ml-2 text-xl'>{trip?.userSelection?.location}</h2>
+        <h2 className='font-bold ml-2 text-xl dark:text-gray-300'>{trip?.userSelection?.location}</h2>
         <div className='flex justify-between m-2 '>
             <div className='flex-col sm:flex sm:flex-row gap-2'>
           <h2 className='bg-gray-300  rounded-xl m-2 p-2 font-medium text-xs md:text-[14px] '>📅{trip?.userSelection?.NoOfDays} Days</h2>
           <h2 className='bg-gray-300  rounded-xl m-2 p-2 font-medium text-xs md:text-[14px]'>💰{trip?.userSelection?.budget} Budget</h2>
           <h2 className='bg-gray-300  rounded-xl m-2 p-2 font-medium text-xs md:text-[14px]'>🧑🏻‍🤝‍🧑🏻No.of travelers: {trip?.userSelection?.persons}</h2>
-       </div><div className='mr-5'> <button onClick={()=>setOpenDialog(true)}><IoIosSend style={{color:"white",background:"black"}} size={45} className='hover:cursor-pointer p-2 rounded-[3px]' /></button></div>
+       </div><div className='mr-5'> <button><IoIosSend style={{color:"white",background:"black"}} size={35} className='hover:cursor-pointer p-2 rounded-[3px]' /></button></div>
         </div>
       </div>
      <Dialog open={openDialog} onOpenChange={setOpenDialog}>

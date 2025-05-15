@@ -58,16 +58,16 @@ function MyTrips() {
   }, []);
 
   return (
-    <div className="flex flex-col items-center">
-      <h2 className="text-[35px] text-gray-700 text-center font-bold m-5 uppercase">My Trips</h2>
+    <div className="flex flex-col items-center dark:text-gray-300">
+      <h2 className="text-[35px] text-gray-700 dark:text-gray-300 text-center font-bold m-5 uppercase">My Trips</h2>
     
       {trips.length > 0 ? (
         <div className="grid grid-cols-4 gap-4">
           {trips.map((item) => (
-            <div key={item.id} className="border p-4 m-2 rounded shadow">
+            <div key={item.id} className="border p-4 m-2 rounded shadow dark:bg-gray-900 dark:border-gray-700 dark:hover:border-gray-300 transition duration-500 ease-in-out ">
             <img src={photoURL[item.id]} alt="No Image Found" />
-              <h2 className="text-xl mt-3 font-bold text-gray-700">{item.userSelection.location}</h2>
-              <p className="text-[15px] font-medium text-gray-400">
+              <h2 className="text-xl mt-3 font-bold text-gray-700 dark:text-gray-400">{item.userSelection.location}</h2>
+              <p className="text-[15px] font-medium text-gray-400 dark:text-gray-500">
                 {item.userSelection.NoOfDays} day {item.userSelection.budget} budget trip
               </p>
             </div>

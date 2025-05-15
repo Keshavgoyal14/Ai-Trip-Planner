@@ -1,5 +1,7 @@
 import { Button } from '../ui/button'
 import { useNavigate ,Link} from 'react-router-dom'
+import { Switch } from "@/components/ui/switch"
+import { useDarkMode } from '../DarkMode'
 import {
   Popover,
   PopoverContent,
@@ -17,6 +19,11 @@ import { googleLogout, useGoogleLogin } from '@react-oauth/google'
 import { useState } from 'react'
 import { toast } from "sonner"
 const Header = () => {
+  const { isdarkMode, setDarkMode } = useDarkMode()
+   const handleToggle = (checked) => {
+    setDarkMode(checked);
+  };
+
   const [openDialog, setOpenDialog] = useState(false)
   const navigate = useNavigate()
   const user = localStorage.getItem('user')
@@ -55,12 +62,18 @@ const Header = () => {
     googleLogout()
     localStorage.removeItem('user')
     navigate('/')
-    window.location.reload()
+
   }
   return (
-    <div className='flex justify-between items-center p-4  mt-1 shadow-sm'>
+    <div className='flex justify-between items-center p-4  mt-1 shadow-sm dark:text-gray-300'>
       <img src='/logo.svg' alt="Image not Found" />
       {user? <div className='flex gap-2 '>
+         <div className="flex items-center gap-2">
+      <Switch checked={isdarkMode} onCheckedChange={handleToggle} />
+      <span className="text-sm text-gray-700 dark:text-gray-300">
+        {isdarkMode ? 'Dark Mode' : 'Light Mode'}
+      </span>
+    </div>
         <span><Link to="/create-trip"><Button variant='outline'>+ Create Trips</Button></Link></span>
         <span><Link to="/my-trips"> <Button variant="outline">My Trips</Button></Link></span>
         <Popover className="relative">

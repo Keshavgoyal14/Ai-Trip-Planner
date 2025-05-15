@@ -111,12 +111,12 @@ navigate(`/viewtrip/${docID}`)
 };
   return (
   
-    <div className='flex flex-col mx-9 mt-9 gap-2 m-10'>
+    <div className='flex flex-col mx-9 mt-9 gap-2 m-10 dark:text-gray-300'>
       
-      <h1 className='text-3xl font-medium '>Tell us about Your travel preference</h1>
-      <p className='text-xl font-medium text-gray-600'>Just provide the basic information and our trip planner generate customized trip based on your preference</p>
+      <h1 className='text-3xl font-medium dark:text-gray-300'>Tell us about Your travel preference</h1>
+      <p className='text-xl font-medium text-gray-600 dark:text-gray-500'>Just provide the basic information and our trip planner generate customized trip based on your preference</p>
 
-      <div className='flex flex-col gap-5 '>
+      <div className='flex flex-col gap-5 dark:text-gray-300 '>
         
         <h2 className='mx-9 text-[18px] mt-4 font-bold'>What is destination of choice?</h2>
         <Autocomplete
@@ -131,7 +131,7 @@ navigate(`/viewtrip/${docID}`)
            handleInputChange("location",e.target.value)}
           }
         />
-        <div className='flex flex-col gap-5 font-bold'>
+        <div className='flex flex-col gap-5 font-bold '>
           <h2 className='mx-9 text-[18px] mt-4'>How many days are you planning Trip?</h2>
           <Input className='w-[50%] p-2 ml-10 border-2 border-gray-300 rounded-md' placeholder={'Ex-4'} type='number'
           onChange={(e)=>{const value = Number(e.target.value);
@@ -147,7 +147,7 @@ navigate(`/viewtrip/${docID}`)
           <div className='grid grid-cols-3 mt-4 ml-9'>
             {SelectBudgetOption().map((item) => {
               return (
-              <div key={item.id} onClick={()=>handleInputChange('budget',item.title)} className={`flex flex-col m-5 items-center border-2  rounded-md p-4 hover:shadow-2xl ${formData.budget===item.title&&'shadow-2xl border-black border-2 '}`}>
+              <div key={item.id} onClick={()=>handleInputChange('budget',item.title)} className={`flex flex-col m-5 items-center border-2  rounded-md p-4 hover:shadow-2xl ${formData.budget===item.title&&'shadow-2xl border-black border-2 dark:border-gray-300'}`}>
                 <div className=''>{item.icon}</div>
                 <div className='font-bold'>{item.title}</div>
                 <div>{item.desc}</div>
@@ -162,7 +162,7 @@ navigate(`/viewtrip/${docID}`)
         <div className='grid grid-cols-3 mt-4 ml-9'>
           {SelectTravelPlans().map((item) => {
             return (
-            <div key={item.id} onClick={()=>handleInputChange('persons',item.people)} className={`flex flex-col m-5 items-center border-2  rounded-md p-4 hover:shadow-2xl ${formData.persons===item.people&&'shadow-2xl border-black '}`}>
+            <div key={item.id} onClick={()=>handleInputChange('persons',item.people)} className={`flex flex-col m-5 items-center border-2  rounded-md p-4 hover:shadow-2xl ${formData.persons===item.people&&'shadow-2xl border-black dark:border-gray-300 '}`}>
               <div className=''>{item.icon}</div>
               <div className='font-medium'>{item.title}</div>
               <div>{item.desc}</div>
@@ -171,7 +171,7 @@ navigate(`/viewtrip/${docID}`)
         </div>
       </div>
       <div className='flex justify-end'>
-        <Button disabled={loading} onClick={()=>Generatetrip()} className=' bg-black text-white font-bold px-3 py-2 rounded-md hover:bg-red-600 hover-shadow-2xl '>
+        <Button disabled={loading} onClick={()=>Generatetrip()} className=' bg-black text-white font-bold px-3 py-2 rounded-md hover:bg-red-600 hover-shadow-2xl dark:bg-gray-300 dark:text-black dark:hover:bg-red-400'>
         {loading?<AiOutlineLoading3Quarters className='animate-spin'/>:'Generate Trip'}</Button></div>
 
   <Dialog open={openDialog}> 
