@@ -2,8 +2,51 @@ import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { GetPlacesDetails } from "../../service/GlobalApi";
 
+export const handlePlacesPDF = (doc, trip, y) => {
+  const itinerary = trip?.Aitrips?.itinerary;
+  if (!itinerary) return y;
+  doc.setFontSize(16);
+  y += 10;
+  doc.text("Places to Visit", 10, y);
+  y += 5;
+  Object.entries(itinerary)
+    .sort((a, b) => {
+      const dayA = parseInt(a[0].match(/\d+/)?.[0]);
+      const dayB = parseInt(b[0].match(/\d+/)?.[0]);
+      return dayA - dayB;
+    })
+    .forEach(([day, places]) => {
+      y += 8;
+      doc.setFontSize(14);
+doc.text(`${day.charAt(0).toUpperCase() + day.slice(1)}:`, 10, y);
+      places.forEach((place) => {
+        y += 8;
+        doc.setFontSize(12);
+        doc.text(`Place Name: ${place?.placeName || "N/A"}`, 12, y);
+        y += 6;
+        doc.text(`Details: ${place?.placeDetails || "N/A"}`, 12, y);
+        y += 6;
+        doc.text(`Travel Time: ${place?.timeTravel || "N/A"}`, 12, y);
+        y += 6;
+        doc.text(`Rating: ${place?.rating || "N/A"}`, 12, y);
+
+        y += 8;
+
+        if (y > 270) {
+          doc.addPage();
+          y = 15;
+        }
+      });
+    });
+
+  return y;
+};
+
 function PlacesToVisit({trip}) {
    const [photoURLs, setPhotoURLs] = useState({}); // Store photo URLs for each place
+
+
+
 
   // Fetch photos for all places
   useEffect(() => {
@@ -76,4 +119,4 @@ function PlacesToVisit({trip}) {
   )
 }
 
-export default PlacesToVisit
+export default PlacesToVisit; 
