@@ -66,18 +66,11 @@ function MyTrips() {
       {trips.length > 0 ? (
         <div className="grid grid-cols-4 gap-4">
           {trips.map((item) => (
-<<<<<<< HEAD
             <div className="border p-4 m-2 rounded-2xl shadow dark:bg-gray-900 dark:border-gray-700 dark:hover:border-gray-300 transition duration-500 ease-in-out ">
             <div key={item.id} >
             <img src={photoURL[item.id]} alt="No Image Found" />
               <h2 className="text-[18px] mt-3 font-bold text-gray-700 dark:text-gray-400">{item.userSelection.location}</h2>
               <p className="text-[15px] mt-1 font-medium text-gray-400 dark:text-gray-500">
-=======
-            <div key={item.id} className="border p-4 m-2 rounded shadow dark:bg-gray-900 dark:border-gray-700 dark:hover:border-gray-300 transition duration-500 ease-in-out ">
-            <img src={photoURL[item.id]} alt="No Image Found" />
-              <h2 className="text-xl mt-3 font-bold text-gray-700 dark:text-gray-400">{item.userSelection.location}</h2>
-              <p className="text-[15px] font-medium text-gray-400 dark:text-gray-500">
->>>>>>> 1cc7b67526f174e383f99d828faf4d63af8bd865
                 {item.userSelection.NoOfDays} day {item.userSelection.budget} budget trip
               </p>
               

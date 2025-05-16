@@ -1,15 +1,8 @@
 import { useEffect, useState } from "react";
 import { GetPlacesDetails } from "../../service/GlobalApi";
 import { IoIosSend } from "react-icons/io";
-<<<<<<< HEAD
 import { FaFacebook,FaSquareXTwitter,FaInstagram } from "react-icons/fa6";
 import { FaWhatsapp,FaLinkedinIn } from "react-icons/fa";
-=======
-import { FaFacebook } from "react-icons/fa6";
-import { FaSquareXTwitter } from "react-icons/fa6";import { FaWhatsapp } from "react-icons/fa";
-import { FaInstagram } from "react-icons/fa6"
-import { FaLinkedinIn } from "react-icons/fa";
->>>>>>> 1cc7b67526f174e383f99d828faf4d63af8bd865
 import {
   Dialog,
   DialogContent,
@@ -18,7 +11,6 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog"
 import {FacebookShareButton, TwitterShareButton, WhatsappShareButton,LinkedinShareButton,InstapaperShareButton} from "react-share"
-<<<<<<< HEAD
 
 // handleInfoPDF.js
 export const handleInfoPDF = (doc, trip, y) => {
@@ -36,8 +28,6 @@ export const handleInfoPDF = (doc, trip, y) => {
 
 
 
-=======
->>>>>>> 1cc7b67526f174e383f99d828faf4d63af8bd865
 const InfoSection = ({trip}) => {
   const [photoURL, setPhotoUrl] = useState('');
   const [openDialog, setOpenDialog] = useState(false);
@@ -73,13 +63,8 @@ const GetPhoto = async () => {
     console.warn("No valid photo found.")
   }
 }
-<<<<<<< HEAD
 const shareUrl = window.location.href;
 const title = `Check out this trip to ${trip?.userSelection?.location}!`;
-=======
- const shareUrl =`${window.location.origin}${window.location.pathname}`; // Current page URL
-  const title = `Check out this trip to ${trip?.userSelection?.location}!`;
->>>>>>> 1cc7b67526f174e383f99d828faf4d63af8bd865
 
   return (
     <div className='flex flex-col gap-4 m-5'>
@@ -88,17 +73,10 @@ const title = `Check out this trip to ${trip?.userSelection?.location}!`;
         <h2 className='font-bold ml-2 text-xl dark:text-gray-300'>{trip?.userSelection?.location}</h2>
         <div className='flex justify-between m-2 '>
             <div className='flex-col sm:flex sm:flex-row gap-2'>
-<<<<<<< HEAD
           <h2 className='bg-gray-300 dark:text-gray-200 dark:bg-gray-500 rounded-xl m-2 p-2 font-medium text-xs md:text-[14px] '>📅{trip?.userSelection?.NoOfDays} Days</h2>
           <h2 className='bg-gray-300 dark:text-gray-200 dark:bg-gray-500 rounded-xl m-2 p-2 font-medium text-xs md:text-[14px]'>💰{trip?.userSelection?.budget} Budget</h2>
           <h2 className='bg-gray-300 dark:text-gray-200 dark:bg-gray-500 rounded-xl m-2 p-2 font-medium text-xs md:text-[14px]'>🧑🏻‍🤝‍🧑🏻No.of travelers: {trip?.userSelection?.persons}</h2>
        </div><div className='mr-5'> <button onClick={()=>setOpenDialog(true)}><IoIosSend  size={40} className='hover:cursor-pointer p-2 rounded-3xl bg-black text-white dark:bg-gray-200 dark:text-black' /></button></div>
-=======
-          <h2 className='bg-gray-300 dark:bg-gray-800 rounded-xl m-2 p-2 font-medium text-xs md:text-[14px] '>📅{trip?.userSelection?.NoOfDays} Days</h2>
-          <h2 className='bg-gray-300 dark:bg-gray-800 rounded-xl m-2 p-2 font-medium text-xs md:text-[14px]'>💰{trip?.userSelection?.budget} Budget</h2>
-          <h2 className='bg-gray-300 dark:bg-gray-800 rounded-xl m-2 p-2 font-medium text-xs md:text-[14px]'>🧑🏻‍🤝‍🧑🏻No.of travelers: {trip?.userSelection?.persons}</h2>
-       </div><div className='mr-5'> <button onClick={()=>setOpenDialog(true)}><IoIosSend style={{color:"white",background:"black"}} size={45} className='hover:cursor-pointer p-2 rounded-[3px]' /></button></div>
->>>>>>> 1cc7b67526f174e383f99d828faf4d63af8bd865
         </div>
       </div>
      <Dialog open={openDialog} onOpenChange={setOpenDialog}>
