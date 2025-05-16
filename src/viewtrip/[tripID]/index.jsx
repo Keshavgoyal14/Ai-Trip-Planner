@@ -5,6 +5,7 @@ import PlacesToVisit from '../component/PlacesToVisit'
 import { useParams } from 'react-router-dom'
 import { db } from '../../firebaseConfig'
 import { doc, getDoc } from "firebase/firestore";
+import HandleCompletePDF  from '../../components/PdfConverter'
 function Trip() {
     const {tripID} = useParams()
     const [trip,setrip]=useState([])
@@ -29,6 +30,7 @@ return (
         <InfoSection trip={trip}/>
         <HotelRecommend trip={trip}/>
         <PlacesToVisit trip={trip}/>
+        <HandleCompletePDF trip={trip}/>
 
     </div>
   )
