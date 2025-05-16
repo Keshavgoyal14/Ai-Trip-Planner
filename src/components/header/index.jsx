@@ -62,6 +62,7 @@ const Header = () => {
     googleLogout()
     localStorage.removeItem('user')
     navigate('/')
+    window.location.reload()
 
   }
   return (
