@@ -1,10 +1,8 @@
 import { useEffect, useState } from "react";
 import { GetPlacesDetails } from "../../service/GlobalApi";
 import { IoIosSend } from "react-icons/io";
-import { FaFacebook } from "react-icons/fa6";
-import { FaSquareXTwitter } from "react-icons/fa6";import { FaWhatsapp } from "react-icons/fa";
-import { FaInstagram } from "react-icons/fa6"
-import { FaLinkedinIn } from "react-icons/fa";
+import { FaFacebook,FaSquareXTwitter,FaInstagram } from "react-icons/fa6";
+import { FaWhatsapp,FaLinkedinIn } from "react-icons/fa";
 import {
   Dialog,
   DialogContent,
@@ -13,6 +11,23 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog"
 import {FacebookShareButton, TwitterShareButton, WhatsappShareButton,LinkedinShareButton,InstapaperShareButton} from "react-share"
+
+// handleInfoPDF.js
+export const handleInfoPDF = (doc, trip, y) => {
+  doc.setFontSize(16);
+  doc.text("Provided Trip Information", 10, y);
+  y += 5;
+  doc.setFontSize(12);
+  doc.text(`Location: ${trip?.userSelection?.location }`, 10, y += 8);
+  doc.text(`No of Days: ${trip?.userSelection?.NoOfDays}`, 10, y += 8);
+  doc.text(`Budget: ${trip?.userSelection?.budget }`, 10, y += 8);
+  doc.text(`No of Travelers: ${trip?.userSelection?.persons}`, 10, y += 8);
+
+  return y;
+};
+
+
+
 const InfoSection = ({trip}) => {
   const [photoURL, setPhotoUrl] = useState('');
   const [openDialog, setOpenDialog] = useState(false);
@@ -22,6 +37,8 @@ useEffect(() => {
     console.log( photoURL);
   }
 }, [photoURL]);
+
+
 
 useEffect(() => {
   if (trip) {
@@ -46,6 +63,8 @@ const GetPhoto = async () => {
     console.warn("No valid photo found.")
   }
 }
+const shareUrl = window.location.href;
+const title = `Check out this trip to ${trip?.userSelection?.location}!`;
 
   return (
     <div className='flex flex-col gap-4 m-5'>
@@ -54,10 +73,10 @@ const GetPhoto = async () => {
         <h2 className='font-bold ml-2 text-xl dark:text-gray-300'>{trip?.userSelection?.location}</h2>
         <div className='flex justify-between m-2 '>
             <div className='flex-col sm:flex sm:flex-row gap-2'>
-          <h2 className='bg-gray-300  rounded-xl m-2 p-2 font-medium text-xs md:text-[14px] '>📅{trip?.userSelection?.NoOfDays} Days</h2>
-          <h2 className='bg-gray-300  rounded-xl m-2 p-2 font-medium text-xs md:text-[14px]'>💰{trip?.userSelection?.budget} Budget</h2>
-          <h2 className='bg-gray-300  rounded-xl m-2 p-2 font-medium text-xs md:text-[14px]'>🧑🏻‍🤝‍🧑🏻No.of travelers: {trip?.userSelection?.persons}</h2>
-       </div><div className='mr-5'> <button><IoIosSend style={{color:"white",background:"black"}} size={35} className='hover:cursor-pointer p-2 rounded-[3px]' /></button></div>
+          <h2 className='bg-gray-300 dark:text-gray-200 dark:bg-gray-500 rounded-xl m-2 p-2 font-medium text-xs md:text-[14px] '>📅{trip?.userSelection?.NoOfDays} Days</h2>
+          <h2 className='bg-gray-300 dark:text-gray-200 dark:bg-gray-500 rounded-xl m-2 p-2 font-medium text-xs md:text-[14px]'>💰{trip?.userSelection?.budget} Budget</h2>
+          <h2 className='bg-gray-300 dark:text-gray-200 dark:bg-gray-500 rounded-xl m-2 p-2 font-medium text-xs md:text-[14px]'>🧑🏻‍🤝‍🧑🏻No.of travelers: {trip?.userSelection?.persons}</h2>
+       </div><div className='mr-5'> <button onClick={()=>setOpenDialog(true)}><IoIosSend  size={40} className='hover:cursor-pointer p-2 rounded-3xl bg-black text-white dark:bg-gray-200 dark:text-black' /></button></div>
         </div>
       </div>
      <Dialog open={openDialog} onOpenChange={setOpenDialog}>
@@ -89,4 +108,4 @@ const GetPhoto = async () => {
   )
 }
 
-export default InfoSection
+export default InfoSection;

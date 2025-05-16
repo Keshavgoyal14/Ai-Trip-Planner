@@ -2,10 +2,41 @@ import { useEffect, useState } from 'react'
 import { GetPlacesDetails } from '../../service/GlobalApi'
 import { Link } from 'react-router-dom'
 
+
+ // handleHotelPDF.js
+export const handleHotelPDF = (doc, trip, y) => {
+  const hotels = trip?.Aitrips?.hotels;
+  if (!hotels || hotels.length === 0) return y;
+
+  doc.setFontSize(16);
+  y += 15;
+  doc.text("Hotel Recommendations", 10, y);
+  y += 5;
+  hotels.forEach((hotel, index) => {
+    y += 10;
+    doc.setFontSize(14);
+    doc.text(`Hotel Name: ${hotel?.hotelName || "N/A"}`, 10, y);
+    y += 8;
+    doc.setFontSize(12);
+    doc.text(`Address: ${hotel?.hotelAddress || "N/A"}`, 12, y);
+    y += 6;
+    doc.text(`Price: ${hotel?.price || "N/A"}`, 12, y);
+    y += 6;
+    doc.text(`Rating: ${hotel?.rating || "N/A"}`, 12, y);
+    y += 5;
+    if (y > 270) {
+      doc.addPage();
+      y = 15;
+    }
+  });
+  return y;
+};
+
+
+
 function HotelRecommend({trip}) {
   const [photoURL, setPhotoUrl] = useState({});
   
-  // Log when photoURL changes
  useEffect(() => {
   Object.entries(photoURL).forEach(([index, url]) => {
     console.log(`Photo URL for hotel at index ${index}:`, url);
