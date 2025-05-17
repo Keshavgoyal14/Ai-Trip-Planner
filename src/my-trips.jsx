@@ -1,11 +1,17 @@
 import { db } from "./firebaseConfig"
-import { collection, query, where, getDocs } from "firebase/firestore"; 
+import { collection, query, where, getDocs ,deleteDoc , doc} from "firebase/firestore"; 
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import {Button} from "./components/ui/button";
 import { GetPlacesDetails } from "./service/GlobalApi";
 import HandleCompletePDF from "./components/PdfConverter";
+import { MdDelete } from "react-icons/md";
+import { toast } from "sonner";
+import { useNavigate } from "react-router-dom";
+import { MdModeEditOutline } from "react-icons/md";
 function MyTrips() {
+    const navigate = useNavigate()
+    const [editTrip, setEditTrip] = useState(null);
   const [trips, setTrips] = useState([]);
     const [photoURL, setPhotoUrl] = useState({});
 
@@ -54,7 +60,21 @@ function MyTrips() {
       console.warn("No valid photo found.")
     }
   }
+ const handleDelete= async(id)=>{
+    await deleteDoc(doc(db, "AiTrips", id));
+    const updatedTrips = trips.filter((trip) => trip.id !== id);
+    setTrips(updatedTrips);
+    toast.success("Trip Deleted Successfully");
+ }
+ const handleUpdate=(item)=>{
+    setEditTrip(item)
+    navigate(`/edit-trip/${item.id}` ,{
+      state: {
+        editTrip: item,
+      },
+    });
 
+ }
   useEffect(() => {
     fetchTrips();
   }, []);
@@ -75,9 +95,11 @@ function MyTrips() {
               </p>
               
             </div>
-         <div className="flex items-center">
+         <div className="flex gap-2 items-center">
            <Link to={`/viewtrip/${item.id}`}><Button variant="default" className="dark:bg-gray-300 hover:cursor-pointer">View</Button></Link>
-          <HandleCompletePDF trip={item} /> </div></div>))}
+          <HandleCompletePDF trip={item} />
+          <button onClick={()=>handleDelete(item.id)} className="hover:cursor-pointer"><MdDelete size={25} /></button> 
+          <button onClick={()=>handleUpdate(item)} className="ml-2"><MdModeEditOutline size={22}/></button></div></div>))}
         </div>
       ) : (
         <div>No Trips Found</div>
