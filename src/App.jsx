@@ -21,7 +21,7 @@ function App() {
       <Route path="/" element={<Hero/>} />
       <Route path="/create-trip" element={<CreateTrip/>} />
       <Route path="/viewtrip/:tripID" element={<Trip/>} />
-
+      <Route path="/edit-trip/:id" element={<CreateTrip />} />
 
      </Routes>
      </div>
