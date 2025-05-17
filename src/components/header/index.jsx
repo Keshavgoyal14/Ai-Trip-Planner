@@ -79,7 +79,7 @@ const Header = () => {
         <span><Link to="/create-trip"><Button className='text-[12px] p-[0] md:text-sm md:p-2 ' variant='outline'>+ Create Trips</Button></Link></span>
         <span><Link to="/my-trips"> <Button className='text-[12px] p-[0] md:text-sm md:p-3' variant="outline">My Trips</Button></Link></span>
         <Popover className="relative ">
-          <PopoverTrigger><img src={userData?.picture} className="md:w-[35px] md:h-[35px] w-[29px] h-[36px] rounded-3xl" alt="no image found" /></PopoverTrigger>
+          <PopoverTrigger><img src={userData?.picture} className="md:w-[35px] md:h-[35px] w-[29px] h-[36px] md:mr-10 rounded-3xl" alt="no image found" /></PopoverTrigger>
           <PopoverContent><button onClick={() => handleLogout()}>Logout</button></PopoverContent>
         </Popover>
       </div> :
