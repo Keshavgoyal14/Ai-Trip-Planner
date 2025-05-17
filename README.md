@@ -11,19 +11,21 @@ An intelligent travel planning web app powered by Gemini AI, Firebase, and Googl
 https://ai-trip-planner-beige.vercel.app/
 
 
-## Features
+## ✨ Features
 
 🔐 Google Sign-In Authentication  
 🧳 Smart travel itinerary generation via Gemini AI  
 📍 Select destinations, travel style, budget, and duration  
 💾 Real-time data syncing with Firebase  
 💾 Save trip history  
+✏️ Edit and 🗑️ delete saved trips  
 🔗 Sharable trip plans via unique links  
 🧾 Download AI-generated trip as a PDF  
 📌 Clickable hotel/place names open in Google Maps  
 🌗 Light/Dark mode toggle  
 📱 Responsive UI with React + Tailwind CSS  
-🚀 Fast performance via Vite
+🚀 Fast performance via Vite  
+
 
 
 ## Tech Stack
