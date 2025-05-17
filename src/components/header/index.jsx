@@ -66,37 +66,56 @@ const Header = () => {
 
   }
   return (
-    <div className='w-full flex flex-col md:flex-row items-start gap-y-2 md:items-center md:justify-between p-1 pb-5 md:p-4  md:mt-1 shadow-sm dark:text-gray-300 flex-wrap'>
-     <h2 className='uppercase md:m-0 m-auto font-extrabold text-[28px] md:text-[28px] tracking-wide '>Trip<span className='text-red-600'>Mate</span></h2>
-      {/* <img src='/logo.svg' alt="Image not Found" /> */}
-      {user? <div className='flex gap-2 md:gap-2 m-auto md:m-0'>
-         <div className="flex flex-col md:flex-row w-full md:justify-end items-center gap-3 md:gap-2 ">
-      <Switch  checked={isdarkMode} onCheckedChange={handleToggle} />
-      <span className=" text-[12px] text-center  md:text-sm text-gray-700 dark:text-gray-300">
-        {isdarkMode ? 'Dark Mode' : 'Light Mode'}
-      </span>
-    </div>
-        <span><Link to="/create-trip"><Button className='text-[12px] p-[0] md:text-sm md:p-2 ' variant='outline'>+ Create Trips</Button></Link></span>
-        <span><Link to="/my-trips"> <Button className='text-[12px] p-[0] md:text-sm md:p-3' variant="outline">My Trips</Button></Link></span>
-        <Popover className="relative ">
-          <PopoverTrigger><img src={userData?.picture} className="md:w-[35px] md:h-[35px] w-[29px] h-[36px] md:mr-10 rounded-3xl" alt="no image found" /></PopoverTrigger>
-          <PopoverContent><button onClick={() => handleLogout()}>Logout</button></PopoverContent>
+  <div className='flex flex-col md:flex-row items-start md:items-center md:justify-between p-1 pb-5 md:p-4 md:mt-1 shadow-sm dark:text-gray-300 flex-wrap'>
+  {/* First row (Title) — center on mobile, left on desktop */}
+  <div className='w-full md:w-auto flex justify-center md:justify-start'>
+    <h2 className='uppercase font-extrabold text-[28px] tracking-wide'>
+      Trip<span className='text-red-600'>Mate</span>
+    </h2>
+  </div>
+
+  {/* Second row (Nav items) — center on mobile, right on desktop */}
+  <div className='w-full md:w-auto flex flex-wrap justify-center md:justify-end gap-2 mt-2 md:mt-0'>
+    {user ? (
+      <>
+        <div className="flex items-center gap-2">
+          <Switch checked={isdarkMode} onCheckedChange={handleToggle} />
+          <span className="text-xs md:text-sm text-gray-700 dark:text-gray-300">
+            {isdarkMode ? 'Dark Mode' : 'Light Mode'}
+          </span>
+        </div>
+        <Link to="/create-trip">
+          <Button className='text-xs md:text-sm px-2 md:px-4' variant='outline'>+ Create Trips</Button>
+        </Link>
+        <Link to="/my-trips">
+          <Button className='text-xs md:text-sm px-2 md:px-4' variant="outline">My Trips</Button>
+        </Link>
+        <Popover>
+          <PopoverTrigger>
+            <img src={userData?.picture} className="w-[32px] h-[32px] rounded-full cursor-pointer" />
+          </PopoverTrigger>
+          <PopoverContent>
+            <button onClick={handleLogout}>Logout</button>
+          </PopoverContent>
         </Popover>
-      </div> :
-        <div className='m-auto'><Button onClick={() => setOpenDialog(true)} className='cursor-pointer text-[12px]'>Sign In</Button></div>
-      }
-      <Dialog open={openDialog} onOpenChange={setOpenDialog}>
-        <DialogContent>
-          <DialogHeader>
-            <DialogTitle>Login In </DialogTitle>
-            <DialogDescription>
-              <h1 className='mt-3'>Sign In to App with Google Authentication securely</h1>
-              <Button onClick={login} className="w-full mt-5">Sign In with Google</Button>
-            </DialogDescription>
-          </DialogHeader>
-        </DialogContent>
-      </Dialog>
-    </div>
+      </>
+    ) : (
+      <Button onClick={() => setOpenDialog(true)} className='text-xs md:text-sm'>Sign In</Button>
+    )}
+  </div>
+
+  <Dialog open={openDialog} onOpenChange={setOpenDialog}>
+    <DialogContent>
+      <DialogHeader>
+        <DialogTitle>Login In</DialogTitle>
+        <DialogDescription>
+          <h1 className='mt-3'>Sign In to App with Google Authentication securely</h1>
+          <Button onClick={login} className="w-full mt-5">Sign In with Google</Button>
+        </DialogDescription>
+      </DialogHeader>
+    </DialogContent>
+  </Dialog>
+</div>
   )
 }
 
