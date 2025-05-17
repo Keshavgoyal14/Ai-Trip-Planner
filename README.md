@@ -1,5 +1,5 @@
 
-# AI Trip Planner
+# TRIPMATE(AI Trip Planner)
 
 An intelligent travel planning web app powered by Gemini AI, Firebase, and Google Authentication. Users can generate personalized travel itineraries by selecting their travel preferences (like destination, duration, interests, and budget) through an interactive form interface. The app uses AI to automatically create optimized day-wise itineraries based on these inputs.
 
