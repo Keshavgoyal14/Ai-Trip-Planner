@@ -79,32 +79,52 @@ function MyTrips() {
     fetchTrips();
   }, []);
 
-  return (
-    <div className="flex flex-col items-center dark:text-gray-300">
-      <h2 className="text-[35px] text-gray-700 dark:text-gray-300 text-center font-bold m-5 uppercase">My Trips</h2>
-    
+   return (
+    <div className="flex flex-col items-center dark:text-gray-300 px-4 sm:px-6 lg:px-8">
+      <h2 className="text-3xl sm:text-4xl text-gray-700 dark:text-gray-300 text-center font-bold m-5 uppercase">
+        My Trips
+      </h2>
+
       {trips.length > 0 ? (
-        <div className="grid grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 w-full max-w-7xl">
           {trips.map((item) => (
-            <div className="border p-4 m-2 rounded-2xl shadow dark:bg-gray-900 dark:border-gray-700 dark:hover:border-gray-300 transition duration-500 ease-in-out ">
-            <div key={item.id} >
-            <img src={photoURL[item.id]} alt="No Image Found" />
-              <h2 className="text-[18px] mt-3 font-bold text-gray-700 dark:text-gray-400">{item.userSelection.location}</h2>
-              <p className="text-[15px] mt-1 font-medium text-gray-400 dark:text-gray-500">
+            <div
+              key={item.id}
+              className="border p-4 rounded-2xl shadow dark:bg-gray-900 dark:border-gray-700 dark:hover:border-gray-300 transition duration-500 ease-in-out flex flex-col"
+            >
+              <img
+                src={photoURL[item.id]}
+                alt="No Image Found"
+                className="w-full h-48 object-cover rounded-xl"
+              />
+              <h2 className="text-lg mt-3 font-bold text-gray-700 dark:text-gray-400">
+                {item.userSelection.location}
+              </h2>
+              <p className="text-sm mt-1 font-medium text-gray-400 dark:text-gray-500">
                 {item.userSelection.NoOfDays} day {item.userSelection.budget} budget trip
               </p>
-              
+
+              <div className="flex gap-2 items-center mt-4 flex-wrap">
+                <Link to={`/viewtrip/${item.id}`}>
+                  <Button variant="default" className="dark:bg-gray-300 hover:cursor-pointer">
+                    View
+                  </Button>
+                </Link>
+                <HandleCompletePDF trip={item} />
+                <button onClick={() => handleDelete(item.id)} className="hover:cursor-pointer">
+                  <MdDelete size={25} />
+                </button>
+                <button onClick={() => handleUpdate(item)} className="ml-2">
+                  <MdModeEditOutline size={22} />
+                </button>
+              </div>
             </div>
-         <div className="flex gap-2 items-center">
-           <Link to={`/viewtrip/${item.id}`}><Button variant="default" className="dark:bg-gray-300 hover:cursor-pointer">View</Button></Link>
-          <HandleCompletePDF trip={item} />
-          <button onClick={()=>handleDelete(item.id)} className="hover:cursor-pointer"><MdDelete size={25} /></button> 
-          <button onClick={()=>handleUpdate(item)} className="ml-2"><MdModeEditOutline size={22}/></button></div></div>))}
+          ))}
         </div>
       ) : (
         <div>No Trips Found</div>
-      )}</div>
-    
+      )}
+    </div>
   );
 }
 
