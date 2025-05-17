@@ -84,4 +84,6 @@ Start the server
 
 ## License
 
-Keshavgoyal14
+MIT License
+
+Copyright (c) 2025 Keshavgoyal14
