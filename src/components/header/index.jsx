@@ -67,7 +67,8 @@ const Header = () => {
   }
   return (
     <div className='flex justify-between items-center p-4  mt-1 shadow-sm dark:text-gray-300'>
-      <img src='/logo.svg' alt="Image not Found" />
+      <h2 className='uppercase font-extrabold text-[28px]'>Trip<span className='text-red-600'>Mate</span></h2>
+      {/* <img src='/logo.svg' alt="Image not Found" /> */}
       {user? <div className='flex gap-2 '>
          <div className="flex items-center gap-2">
       <Switch checked={isdarkMode} onCheckedChange={handleToggle} />
