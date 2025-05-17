@@ -5,7 +5,7 @@ import { toast } from "sonner"
 import main from './service/Aimodal';
 import { Button } from "@/components/ui/button"
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate ,useLocation} from 'react-router-dom';
 import { SelectTravelPlans, SelectBudgetOption ,AI_PROMPT } from "@/constants/options"
 import {
   Dialog,
@@ -17,13 +17,15 @@ import {
 import { useGoogleLogin } from '@react-oauth/google';
 import axios from 'axios'
 import { db } from './firebaseConfig'
-import { setDoc, doc } from "firebase/firestore"; 
+import { setDoc, doc ,updateDoc} from "firebase/firestore"; 
 
  const CreateTrip = () => {
         const navigate = useNavigate()
+        const location = useLocation()
+        const edittrip=location.state?.editTrip
   const [place, setPlace] = useState('')
   const[loading,setLoading]=useState(false)
-  const [formData,setformData]=useState([])
+  const [formData,setformData]=useState(edittrip ? edittrip.userSelection : {})
   const [openDialog, setOpenDialog] = useState(false)
   const handleInputChange = (name, e) => {
     setformData({
@@ -35,6 +37,11 @@ import { setDoc, doc } from "firebase/firestore";
  console.log(formData)
   },[formData])
 
+  useEffect(() => {
+  if (edittrip) {
+    setformData(edittrip.userSelection);
+  }
+}, [edittrip]);
   const Generatetrip= async()=>{
      const user =localStorage.getItem('user')
      if(!user){
@@ -61,7 +68,17 @@ import { setDoc, doc } from "firebase/firestore";
     toast("Generating your travel plan...");
     const result = await main(FINAL_PROMPT);
     setLoading(false)
-    SaveAitrip(result)
+    if(edittrip){
+      const tripRef =doc(db, "AiTrips", edittrip.id);
+      await updateDoc(tripRef,{
+        Aitrips:JSON.parse(result),
+        userSelection:formData,
+      })
+      setLoading(false)
+      navigate(`/viewtrip/${edittrip.id}`)
+    }
+    else{
+    SaveAitrip(result)}
     return result;
   } catch (error) {
     console.error("Error generating travel plan:", error);
@@ -109,6 +126,9 @@ navigate(`/viewtrip/${docID}`)
     console.error("Error fetching user info:", error.response?.data || error.message);
   });
 };
+const handleCancel=()=>{
+  navigate('/my-trips')
+}
   return (
   
     <div className='flex flex-col mx-9 mt-9 gap-2 m-10 dark:text-gray-300'>
@@ -122,6 +142,7 @@ navigate(`/viewtrip/${docID}`)
         <Autocomplete
           className='w-[50%] p-2 ml-10 border-2 border-gray-300 rounded-md'
           apiKey={import.meta.env.VITE_GOOGLE_API_KEY}
+          value={formData.location || ""}
           onPlaceSelected={(value) => {
             setPlace(value.formatted_address);
             handleInputChange("location",value.formatted_address);
@@ -134,12 +155,13 @@ navigate(`/viewtrip/${docID}`)
         <div className='flex flex-col gap-5 font-bold '>
           <h2 className='mx-9 text-[18px] mt-4'>How many days are you planning Trip?</h2>
           <Input className='w-[50%] p-2 ml-10 border-2 border-gray-300 rounded-md' placeholder={'Ex-4'} type='number'
+          value={formData.NoOfDays || ""}
           onChange={(e)=>{const value = Number(e.target.value);
     if (value < 0) {
-      toast("Number of days cannot be negative"); // Show a toast notification
-      handleInputChange('NoOfDays', 0); // Reset to 0 or any default value
+      toast("Number of days cannot be negative"); 
+      handleInputChange('NoOfDays', 0); 
     } else {
-      handleInputChange('NoOfDays', value); // Update with valid value
+      handleInputChange('NoOfDays', value); 
     }}} />
         </div>
         <div>
@@ -171,9 +193,13 @@ navigate(`/viewtrip/${docID}`)
         </div>
       </div>
       <div className='flex justify-end'>
-        <Button disabled={loading} onClick={()=>Generatetrip()} className=' bg-black text-white font-bold px-3 py-2 rounded-md hover:bg-red-600 hover-shadow-2xl dark:bg-gray-300 dark:text-black dark:hover:bg-red-400'>
-        {loading?<AiOutlineLoading3Quarters className='animate-spin'/>:'Generate Trip'}</Button></div>
-
+        {edittrip?<div className='flex gap-3'><Button disabled={loading} onClick={()=>Generatetrip()} className='cursor-pointer bg-black text-white font-bold px-3 py-2 rounded-md hover:bg-red-600 hover-shadow-2xl dark:bg-gray-300 dark:text-black dark:hover:bg-red-400'>
+        {loading?<AiOutlineLoading3Quarters className='animate-spin'/>:'Generate Trip'}</Button>
+        <Button onClick={()=>handleCancel()} className='bg-black hover:cursor-pointer text-white font-bold px-3 py-2 rounded-md hover:bg-red-600 hover-shadow-2xl dark:bg-gray-300 dark:text-black dark:hover:bg-red-400'>Cancel</Button>
+</div>:<Button disabled={loading} onClick={()=>Generatetrip()} className='cursor-pointer bg-black text-white font-bold px-3 py-2 rounded-md hover:bg-red-600 hover-shadow-2xl dark:bg-gray-300 dark:text-black dark:hover:bg-red-400'>
+        {loading?<AiOutlineLoading3Quarters className='animate-spin'/>:'Generate Trip'}</Button>
+}
+        </div>
   <Dialog open={openDialog}> 
   <DialogContent>
     <DialogHeader>
@@ -185,7 +211,6 @@ navigate(`/viewtrip/${docID}`)
     </DialogHeader>
   </DialogContent>
  </Dialog>
-
     </div>
     
   )
