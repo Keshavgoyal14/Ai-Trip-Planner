@@ -69,7 +69,7 @@ const Header = () => {
     <div className='w-full flex flex-col md:flex-row items-start gap-y-2 md:items-center md:justify-between p-1 pb-5 md:p-4  md:mt-1 shadow-sm dark:text-gray-300 flex-wrap'>
      <h2 className='uppercase md:m-0 m-auto font-extrabold text-[28px] md:text-[28px] tracking-wide '>Trip<span className='text-red-600'>Mate</span></h2>
       {/* <img src='/logo.svg' alt="Image not Found" /> */}
-      {user? <div className='flex gap-1 md:gap-2 m-auto md:m-0'>
+      {user? <div className='flex gap-1 md:gap-2 md:m-0'>
          <div className="flex flex-col md:flex-row w-full md:justify-end items-center gap-3 md:gap-2 ">
       <Switch  checked={isdarkMode} onCheckedChange={handleToggle} />
       <span className=" text-[12px] text-center  md:text-sm text-gray-700 dark:text-gray-300">
