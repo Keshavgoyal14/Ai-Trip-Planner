@@ -23,7 +23,7 @@ https://ai-trip-planner-beige.vercel.app/
 🧾 Download AI-generated trip as a PDF  
 📌 Clickable hotel/place names open in Google Maps  
 🌗 Light/Dark mode toggle  
-📱 Responsive UI with React + Tailwind CSS  
+📱 UI with React + Tailwind CSS  
 🚀 Fast performance via Vite  
 
 
