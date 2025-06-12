@@ -49,7 +49,6 @@ https://ai-trip-planner-beige.vercel.app/
 
 
 ## Screenshots
-![image](https://github.com/user-attachments/assets/0ac5494d-6aa1-49c2-9d35-d32aafa0abcc)
 
 ## Run Locally
 
