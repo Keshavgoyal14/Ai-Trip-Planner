@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import { jsPDF } from "jspdf";
 import { useEffect, useState } from "react";
 import { GetPlacesDetails } from "../../service/GlobalApi";
 

@@ -6,9 +6,7 @@ import {Routes, Route} from 'react-router-dom'
 import { Toaster } from 'sonner'
 import Trip from './viewtrip/[tripID]/index.jsx'
 import MyTrips from './my-trips.jsx'
-
-
-
+import Pricing from './components/PricePage/index.jsx'
 function App() {
  
   return(
@@ -21,8 +19,8 @@ function App() {
       <Route path="/" element={<Hero/>} />
       <Route path="/create-trip" element={<CreateTrip/>} />
       <Route path="/viewtrip/:tripID" element={<Trip/>} />
-
-
+      <Route path="/edit-trip/:id" element={<CreateTrip />} />
+      <Route path="/pricing" element={<Pricing/>} />
      </Routes>
      </div>
 
