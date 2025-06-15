@@ -23,7 +23,11 @@ https://ai-trip-planner-beige.vercel.app/
 🧾 Download AI-generated trip as a PDF  
 📌 Clickable hotel/place names open in Google Maps  
 🌗 Light/Dark mode toggle  
+<<<<<<< HEAD
 📱 Responsive UI with React + Tailwind CSS  
+=======
+📱 UI with React + Tailwind CSS  
+>>>>>>> 893e419b94368d2acfe1d8dd43f8ad7979e9949b
 🚀 Fast performance via Vite  
 
 
@@ -50,11 +54,14 @@ https://ai-trip-planner-beige.vercel.app/
 
 ## Screenshots
 
+<<<<<<< HEAD
 ![image](https://github.com/user-attachments/assets/00fe6c22-b814-4ed3-9ced-09a998ad4696)
 
 ![image](https://github.com/user-attachments/assets/6ea827c8-49ab-41ef-9e20-d4f81de3f2ba)
 
 
+=======
+>>>>>>> 893e419b94368d2acfe1d8dd43f8ad7979e9949b
 ## Run Locally
 
 Clone the project
@@ -64,10 +71,19 @@ Clone the project
 ```
 
 Go to the project directory
+<<<<<<< HEAD
 
 ```bash
   cd my-project
 ```
+=======
+```env
+VITE_GOOGLE_API_KEY=your_google_maps_api_key
+VITE_GEMINI_API_KEY=your_gemini_api_key
+VITE_GOOGLE_AUTH_CLIENT_ID=your_google_auth_client_id
+```bash
+
+>>>>>>> 893e419b94368d2acfe1d8dd43f8ad7979e9949b
 
 Install dependencies
 

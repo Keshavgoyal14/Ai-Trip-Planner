@@ -6,7 +6,10 @@ import main from './service/Aimodal';
 import { Button } from "@/components/ui/button"
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import { useNavigate ,useLocation} from 'react-router-dom';
+<<<<<<< HEAD
 import { handlePayments } from './components/handlepayments';
+=======
+>>>>>>> 893e419b94368d2acfe1d8dd43f8ad7979e9949b
 import { SelectTravelPlans, SelectBudgetOption ,AI_PROMPT } from "@/constants/options"
 import {
   Dialog,

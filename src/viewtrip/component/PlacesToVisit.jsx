@@ -2,16 +2,25 @@ import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { GetPlacesDetails } from "../../service/GlobalApi";
 
+<<<<<<< HEAD
 
 export const handlePlacesPDF = (doc, trip, y) => {
   const itinerary = trip?.Aitrips?.itinerary;
   if (!itinerary) return y;
 
+=======
+export const handlePlacesPDF = (doc, trip, y) => {
+  const itinerary = trip?.Aitrips?.itinerary;
+  if (!itinerary) return y;
+>>>>>>> 893e419b94368d2acfe1d8dd43f8ad7979e9949b
   doc.setFontSize(16);
   y += 10;
   doc.text("Places to Visit", 10, y);
   y += 5;
+<<<<<<< HEAD
 
+=======
+>>>>>>> 893e419b94368d2acfe1d8dd43f8ad7979e9949b
   Object.entries(itinerary)
     .sort((a, b) => {
       const dayA = parseInt(a[0].match(/\d+/)?.[0]);
@@ -122,4 +131,8 @@ function PlacesToVisit({trip}) {
   )
 }
 
+<<<<<<< HEAD
 export default PlacesToVisit; 
+=======
+export default PlacesToVisit; 
+>>>>>>> 893e419b94368d2acfe1d8dd43f8ad7979e9949b
