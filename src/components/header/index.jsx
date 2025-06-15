@@ -2,6 +2,8 @@ import { Button } from '../ui/button'
 import { useNavigate ,Link} from 'react-router-dom'
 import { Switch } from "@/components/ui/switch"
 import { useDarkMode } from '../DarkMode'
+import { db } from '../../firebaseConfig'
+import { doc, getDoc, setDoc } from "firebase/firestore"
 import {
   Popover,
   PopoverContent,
@@ -28,6 +30,27 @@ const Header = () => {
   const navigate = useNavigate()
   const user = localStorage.getItem('user')
   const userData = JSON.parse(user)
+ 
+  const getOrCreateUser = async (user) => {
+  const userRef = doc(db, "users", user.email);
+  const userSnap = await getDoc(userRef);
+
+  if (!userSnap.exists()) {
+    // Create user with initial values
+    await setDoc(userRef, {
+      generateCount: 0,
+      isPaid: false,
+    });
+    return { generateCount: 0, isPaid: false };
+  } else {
+    // Fetch and return existing values
+    const data = userSnap.data();
+    return {
+      generateCount: data.generateCount || 0,
+      isPaid: data.isPaid || false
+    };
+  }
+};
   const login = useGoogleLogin({
     onSuccess: tokenResponse => {
       console.log(tokenResponse)
@@ -53,6 +76,8 @@ const Header = () => {
       localStorage.setItem('user', JSON.stringify(response.data));
       toast("Login Success");
       setOpenDialog(false);
+      getOrCreateUser(response.data)
+      console.log(response.data)
     }).catch((error) => {
       console.error("Error fetching user info:", error.response?.data || error.message);
     });
