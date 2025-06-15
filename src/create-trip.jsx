@@ -59,8 +59,8 @@ import { setDoc, doc ,updateDoc,getDoc} from "firebase/firestore";
       return userSnap.data();
     }
     return {
-      generateCount:data.generateCount || 0,
-      isPaid: data.isPaid || false,
+      generateCount:userSnap.data.generateCount || 0,
+      isPaid: userSnap.data.isPaid || false,
     };
   };
   const Generatetrip = async () => {
@@ -79,7 +79,7 @@ import { setDoc, doc ,updateDoc,getDoc} from "firebase/firestore";
     }
     // Check generate count in Firestore
     const {generateCount,isPaid} = await getGenerateCount(user.email);
-    if (!isPaid && currentCount >= GenerateLimit ) {
+    if (!isPaid && generateCount >= GenerateLimit ) {
       toast(`You have reached the limit of ${GenerateLimit} trip generations. Please upgrade your plan.`);
       navigate('/pricing');
       return;
