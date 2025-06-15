@@ -5,7 +5,7 @@ export const handlePayments = () => {
   const user = JSON.parse(localStorage.getItem('user'));
   const options = {
     key: import.meta.env.VITE_RAZORPAY_KEY, // Replace with your Razorpay key
-    amount: 100, 
+    amount: 499*100, 
     currency: "INR",
     name: "TripMate",
     description: "Unlimited Trip Generation",
