@@ -26,6 +26,7 @@ https://ai-trip-planner-beige.vercel.app/
 📱 Responsive UI with React + Tailwind CSS  
 📱 UI with React + Tailwind CSS  
 🚀 Fast performance via Vite 
+
 💳 Razorpay payment integration for premium users
 
 
