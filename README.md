@@ -1,7 +1,7 @@
 
 # TRIPMATE(AI Trip Planner)
 
-An intelligent travel planning web app powered by Gemini AI, Firebase, and Google Authentication. Users can generate personalized travel itineraries by selecting their travel preferences (like destination, duration, interests, and budget) through an interactive form interface. The app uses AI to automatically create optimized day-wise itineraries based on these inputs.
+TripMate is a smart and intuitive AI-powered travel planning web application that helps users create personalized, day-wise itineraries based on their travel preferences. Built using Gemini AI, Firebase, and Google Authentication, the app allows users to input details such as destination, travel duration, interests, and budget through a user-friendly form. In response, the AI generates an optimized travel plan tailored to the user's needs. With real-time data syncing, saved trip history, and additional features like PDF export and map integration, TripMate simplifies the entire travel planning experience into just a few clicks. To support unlimited trip generation and advanced features, TripMate also integrates Razorpay for secure one-time payments. Users on the free tier can generate up to three itineraries, after which they can upgrade seamlessly through Razorpay, unlocking premium access with instant activation and persistent account status stored in Firebase.
 
 
 
@@ -23,45 +23,38 @@ https://ai-trip-planner-beige.vercel.app/
 🧾 Download AI-generated trip as a PDF  
 📌 Clickable hotel/place names open in Google Maps  
 🌗 Light/Dark mode toggle  
-<<<<<<< HEAD
 📱 Responsive UI with React + Tailwind CSS  
-=======
 📱 UI with React + Tailwind CSS  
->>>>>>> 893e419b94368d2acfe1d8dd43f8ad7979e9949b
-🚀 Fast performance via Vite  
+🚀 Fast performance via Vite 
+💳 Razorpay payment integration for premium users
 
 
 
 ## Tech Stack
+## 🛠️ Tech Stack
 
 ### 🧩 Frontend
 - React  
 - Tailwind CSS  
 - ShadCN UI  
 - jsPDF (PDF generation)  
-- React Router (page navigation)  
+- React Router (Page navigation)  
 - Axios (API calls)  
 
 ### 🔧 Backend & Services
-- Firebase (Database)  
-- Google Identity Services (Sign-In & Authentication)  
+- Firebase (Realtime Database, Authentication, Firestore)  
+- Google Identity Services (OAuth Sign-In)  
 - Gemini AI (via Google Generative AI SDK)  
-- Google Maps API (Location & Navigation)
+- Google Maps API (Place Search & Navigation)  
+- Razorpay API (Secure payment integration)
 
 ### ☁️ Hosting
-- Vercel
+- Vercel 
+
 
 
 ## Screenshots
 
-<<<<<<< HEAD
-![image](https://github.com/user-attachments/assets/00fe6c22-b814-4ed3-9ced-09a998ad4696)
-
-![image](https://github.com/user-attachments/assets/6ea827c8-49ab-41ef-9e20-d4f81de3f2ba)
-
-
-=======
->>>>>>> 893e419b94368d2acfe1d8dd43f8ad7979e9949b
 ## Run Locally
 
 Clone the project
@@ -98,7 +91,7 @@ Start the server
 ```
 
 
-## Authors
+## Created By
 
 - Keshav Goyal
 
